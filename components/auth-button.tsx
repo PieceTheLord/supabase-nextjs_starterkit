@@ -2,8 +2,9 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 import { createClient } from "@/lib/supabase/server";
 import { LogoutButton } from "./logout-button";
+import { cn } from "@/lib/utils";
 
-export async function AuthButton() {
+export async function AuthButton({ className, props }: {className?: string, props?: React.HTMLAttributes<HTMLDivElement> }) {
   const supabase = await createClient();
 
   // You can also use getUser() which will be slower.
@@ -16,8 +17,10 @@ export async function AuthButton() {
       Hey, {user.email}!
       <LogoutButton />
     </div>
-  ) : (
-    <div className="flex gap-2">
+  ) : (<div
+      className={cn("flex gap-2", className)}
+      {...props}
+    >
       <Button asChild size="sm" variant={"outline"}>
         <Link href="/auth/login">Sign in</Link>
       </Button>

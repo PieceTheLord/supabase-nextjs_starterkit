@@ -1,5 +1,9 @@
 import { createBrowserClient } from "@supabase/ssr";
 
+
+/** 
+ * ! For CSR components only!
+*/
 export function createClient() {
   return createBrowserClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
